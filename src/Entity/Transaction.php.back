@@ -1,0 +1,167 @@
+<?php
+
+namespace App\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\TransactionRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ApiResource()
+ * @ORM\Entity(repositoryClass=TransactionRepository::class)
+ */
+class Transaction
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     * @Groups({"client:write"})
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"client:read","client:write"})
+     */
+    private $code;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"client:read","client:write"})
+     */
+    private $montant;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"client:read","client:write"})
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"client:read","client:write"})
+     */
+    private $date_retrait;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $part_etat;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $part_ent;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $part_agence_ret;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $part_agence_depot;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function getMontant(): ?int
+    {
+        return $this->montant;
+    }
+
+    public function setMontant(int $montant): self
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getDateRetrait(): ?\DateTimeInterface
+    {
+        return $this->date_retrait;
+    }
+
+    public function setDateRetrait(\DateTimeInterface $date_retrait): self
+    {
+        $this->date_retrait = $date_retrait;
+
+        return $this;
+    }
+
+    public function getPartEtat(): ?int
+    {
+        return $this->part_etat;
+    }
+
+    public function setPartEtat(int $part_etat): self
+    {
+        $this->part_etat = $part_etat;
+
+        return $this;
+    }
+
+    public function getPartEnt(): ?int
+    {
+        return $this->part_ent;
+    }
+
+    public function setPartEnt(int $part_ent): self
+    {
+        $this->part_ent = $part_ent;
+
+        return $this;
+    }
+
+    public function getPartAgenceRet(): ?int
+    {
+        return $this->part_agence_ret;
+    }
+
+    public function setPartAgenceRet(int $part_agence_ret): self
+    {
+        $this->part_agence_ret = $part_agence_ret;
+
+        return $this;
+    }
+
+    public function getPartAgenceDepot(): ?int
+    {
+        return $this->part_agence_depot;
+    }
+
+    public function setPartAgenceDepot(int $part_agence_depot): self
+    {
+        $this->part_agence_depot = $part_agence_depot;
+
+        return $this;
+    }
+}
